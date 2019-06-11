@@ -39,17 +39,27 @@ function setBgGreet() {
   let today = new Date();
   let hour = today.getHours();
 
+  const domStyle = document.body.style;
+
   if (hour < 12) {
     // morning
-    document.body.style.backgroundColor = "yellow";
+    domStyle.backgroundImage = "url('../images/morning.jpg')";
+    domStyle.backgroundRepeat = "no-repeat";
+    domStyle.backgroundPosition = "center";
     greeting.textContent = "Good morning";
   } else if (hour < 18) {
     // afternoon
-    document.body.style.backgroundColor = "red";
+    domStyle.backgroundImage = "url('../images/afternoon.jpg')";
+    domStyle.backgroundPosition = "center";
+    domStyle.backgroundRepeat = "no-repeat";
+    domStyle.backgroundSize = "cover";
+    domStyle.color = "#fff";
     greeting.textContent = "Good afternoon";
   } else {
     greeting.textContent = "Good evening";
-    document.body.style.backgroundColor = "lightblue";
+    domStyle.backgroundImage = "url('../images/evening.jpg')";
+    domStyle.backgroundPosition = "center";
+    domStyle.backgroundRepeat = "no-repeat";
   }
 }
 
@@ -61,6 +71,42 @@ function getName() {
   }
 }
 
+function setName(e) {
+  if (e.type === "keypress") {
+    if (e.which === 13 || e.keyCode === 13) {
+      localStorage.setItem("name", e.target.innerText);
+      name.blur();
+    }
+  } else {
+    localStorage.setItem("name", e.target.innerText);
+  }
+}
+
+function setFocus(e) {
+  if (e.type === "keypress") {
+    if (e.which === 13 || e.keyCode === 13) {
+      localStorage.setItem("focus", e.target.innerText);
+      focus.blur();
+    }
+  } else {
+    localStorage.setItem("focus", e.target.innerText);
+  }
+}
+
+function getFocus() {
+  if (localStorage.getItem("focus") === null) {
+    focus.textContent = "[Enter Focus]";
+  } else {
+    focus.textContent = localStorage.getItem("focus");
+  }
+}
+
+name.addEventListener("keypress", setName);
+name.addEventListener("blur", setName);
+focus.addEventListener("keypress", setFocus);
+focus.addEventListener("blur", setFocus);
+
 showTime();
 setBgGreet();
 getName();
+getFocus();

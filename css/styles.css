@@ -13,6 +13,9 @@ body {
   text-align: center;
   height: 100vh;
   color: black;
+  /* background-image: url("../images/morning.jpg");
+  /* background-size: cover;
+  background-position: center; */
 }
 
 #time {
