@@ -60,6 +60,8 @@ function setBgGreet() {
     domStyle.backgroundImage = "url('../images/evening.jpg')";
     domStyle.backgroundPosition = "center";
     domStyle.backgroundRepeat = "no-repeat";
+    domStyle.color = "#fff";
+    domStyle.backgroundSize = "cover";
   }
 }
 
